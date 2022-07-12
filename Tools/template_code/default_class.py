@@ -6,10 +6,12 @@ def get_code_default_cpp(class_name = "Name_Default", path_name = "Path_Default"
 
 {class_name}::{class_name}()
 {ob}
+
 {cb}
 
 {class_name}::~{class_name}()
 {ob}
+
 {cb}
 
 ''' 
@@ -27,11 +29,15 @@ class {class_name}
 public:
 
 // Methods
+
     {class_name}();
     virtual ~{class_name}();
-{cb};
 
 // Members
+
+
+{cb};
+
 #endif
 ''' 
     pass

@@ -1,6 +1,13 @@
 
 #include "SalamEngine/game_logic/Game.h"
+#include <SalamEngine/game_object/Sprite2D.h>
+#include <stdio.h>
 
+void print_sprite_position(Sprite2D& sprite)
+{
+    printf("Pos_x: %0.2f\n", sprite.position.x);
+    printf("Pos_y: %0.2f\n", sprite.position.y);
+}
 
 Game::Game()
 {
@@ -8,10 +15,26 @@ Game::Game()
 
 Game::~Game()
 {
+    this->destroy();
 }
 
 int Game::start()
 {
+    this->init();
+
+    this->game_loop();
+
+    return 0;
+}
+
+int Game::init()
+{
+    printf("========Game Init========\n");
+
+    input = new Input();
+    asset = new Asset();
+
+    is_running = true;
 
     SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -21,30 +44,43 @@ int Game::start()
     int mainPosX = 100;
     int mainPosY = 100;
 
-    // Set postion and size for sub window based on those of main window
-    int subSizeX = mainSizeX / 2;
-    int subSizeY = mainSizeY / 2;
-    int subPosX = mainPosX + mainSizeX / 4;
-    int subPosY = mainPosY + mainSizeY / 4;
-
     // Set up main window
-    SDL_Window *mainWindow = SDL_CreateWindow("Main Window", mainPosX, mainPosY, mainSizeX, mainSizeY, 0);
-    SDL_Renderer *mainRenderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
-    SDL_SetRenderDrawColor(mainRenderer, 255, 0, 0, 255);
+    mainWindow = SDL_CreateWindow("Main Window", mainPosX, mainPosY, mainSizeX, mainSizeY, 0);
+    renderer = SDL_CreateRenderer(mainWindow, -1, SDL_RENDERER_ACCELERATED);
+    return 0;
+}
 
-    // Set up sub window
-    SDL_Window *subWindow = SDL_CreateWindow("Sub Window", subPosX, subPosY, subSizeX, subSizeY, 0);
-    SDL_Renderer *subRenderer = SDL_CreateRenderer(subWindow, -1, SDL_RENDERER_ACCELERATED);
-    SDL_SetRenderDrawColor(subRenderer, 0, 255, 0, 255);
+int Game::game_loop()
+{
+    printf("========Enter Game Loop========\n");
 
-    // Render empty ( red ) background in mainWindow
-    SDL_RenderClear(mainRenderer);
-    SDL_RenderPresent(mainRenderer);
+    SDL_Texture *tex = asset->load_texture(*this->renderer, string("Assets/Untitled.bmp"));
 
-    // Render empty ( green ) background in subWindow
-    SDL_RenderClear(subRenderer);
-    SDL_RenderPresent(subRenderer);
-    
+    Sprite2D sprite(vec2(10,10));
+    sprite.set_scale(1,2);
+    sprite.set_sprite(tex);
+
+    while (is_running)
+    {
+        input->process(this);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_RenderClear(renderer);
+
+        sprite.move(vec2(1.0/10.0 , 0));
+        print_sprite_position(sprite);
+
+        sprite.draw(renderer);
+
+        SDL_RenderPresent(renderer);
+    }
+    return 0;
+}
+
+int Game::destroy()
+{
+    printf("========Enter Destroy========\n");
+
+    delete input;
     return 0;
 }
 

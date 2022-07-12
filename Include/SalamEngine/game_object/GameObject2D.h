@@ -3,13 +3,12 @@
 class GameObject2D
 {
 public:
-// Methods
-    GameObject2D();
+    // Methods
+    GameObject2D(vec2 position, vec2 scale = vec2(1,1));
     virtual ~GameObject2D();
 
-// Members
+    // Members
 
-vec2 position;
-
-
+    vec2 position;
+    vec2 scale;
 };
