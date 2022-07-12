@@ -1,3 +1,7 @@
+# Created by https://www.toptal.com/developers/gitignore/api/c++,scons
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++,scons
+
+### C++ ###
 # Prerequisites
 *.d
 
@@ -30,3 +34,13 @@
 *.exe
 *.out
 *.app
+
+### SCons ###
+# for projects that use SCons for building: http://http://www.scons.org/
+.sconsign.dblite
+
+# When configure fails, SCons outputs these
+config.log
+.sconf_temp
+
+# End of https://www.toptal.com/developers/gitignore/api/c++,scons

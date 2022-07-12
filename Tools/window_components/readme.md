@@ -1,0 +1,1 @@
+pyuic5.exe -x wizard.ui -o wizard.py 
