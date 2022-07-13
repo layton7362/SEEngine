@@ -9,7 +9,10 @@
 using std::map;
 using std::string;
 
-class Asset
+class Game;
+class InputG;
+
+class Asset 
 {
 public:
 
@@ -17,11 +20,11 @@ public:
 
     Asset();
     virtual ~Asset();
-    SDL_Texture *load_texture(SDL_Renderer &renderer, string &texture_path);
+    SDL_Texture *load_texture(SDL_Renderer &renderer, string &&texture_path);
 
     // Members
 
     map<const char*, SDL_Texture*> tex_manager;
-};
+}asset;
 
 #endif

@@ -1,9 +1,13 @@
-
-#include "SalamEngine/game_logic/Game.h"
-#include <SalamEngine/game_object/Sprite2D.h>
 #include <stdio.h>
+#include <SalamEngine/common.h>
+#include <SalamEngine/game_object/Sprite2D.h>
 
-void print_sprite_position(Sprite2D& sprite)
+Game game;
+InputG Input;
+
+class Sprite2D;
+
+void print_sprite_position(Sprite2D &sprite)
 {
     printf("Pos_x: %0.2f\n", sprite.position.x);
     printf("Pos_y: %0.2f\n", sprite.position.y);
@@ -31,9 +35,6 @@ int Game::init()
 {
     printf("========Game Init========\n");
 
-    input = new Input();
-    asset = new Asset();
-
     is_running = true;
 
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -54,20 +55,20 @@ int Game::game_loop()
 {
     printf("========Enter Game Loop========\n");
 
-    SDL_Texture *tex = asset->load_texture(*this->renderer, string("Assets/Untitled.bmp"));
+    SDL_Texture *tex = asset.load_texture(*this->renderer, string("Assets/Untitled.bmp"));
 
-    Sprite2D sprite(vec2(10,10));
-    sprite.set_scale(1,2);
+    Sprite2D sprite(vec2(10, 10));
+    sprite.set_scale(1, 2);
     sprite.set_sprite(tex);
 
     while (is_running)
     {
-        input->process(this);
+        input.process(this);
+
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        sprite.move(vec2(1.0/10.0 , 0));
-        print_sprite_position(sprite);
+        // print_sprite_position(sprite);
 
         sprite.draw(renderer);
 
@@ -79,8 +80,5 @@ int Game::game_loop()
 int Game::destroy()
 {
     printf("========Enter Destroy========\n");
-
-    delete input;
     return 0;
 }
-

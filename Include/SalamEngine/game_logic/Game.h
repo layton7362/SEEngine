@@ -4,10 +4,12 @@
 
 #include <SDL2/SDL.h>
 #include <string>
-#include "SalamEngine/game_logic/Input.h"
-#include "SalamEngine/game_logic/Asset.h"
 
 using std::string;
+
+class InputG;
+class Asset;
+class Sprite2D;
 
 class Game
 {
@@ -29,9 +31,6 @@ public:
 
     SDL_Window *mainWindow;
     SDL_Renderer *renderer;
-    
-    Input *input;
-    Asset *asset;
 
     bool is_running;
 };

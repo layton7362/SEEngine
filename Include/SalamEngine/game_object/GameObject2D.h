@@ -1,4 +1,7 @@
-#include "SalamEngine/math/Math.h"
+#ifndef __GameObject2D_H
+#define __GameObject2D_H
+
+#include <SalamEngine/common.h>
 
 class GameObject2D
 {
@@ -7,8 +10,13 @@ public:
     GameObject2D(vec2 position, vec2 scale = vec2(1,1));
     virtual ~GameObject2D();
 
-    // Members
+    virtual void on_create();
+    virtual void on_update();
+    virtual void on_destroy();
 
+    // Members
     vec2 position;
     vec2 scale;
 };
+
+#endif //__GameObject2D_H

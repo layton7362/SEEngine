@@ -2,8 +2,9 @@ from glob import glob
 import SCons.Script
 from SCons.Environment import Environment
 from Tools.global_defs import project_directory
+import os
 
-env = Environment()
+env = Environment(tools=["mingw"], ENV = os.environ)
 
 LIBPATH = glob("F:/MyEngine/LibRepo/libs/**")
 
@@ -23,6 +24,7 @@ HEADERPATH= [
 
 CPPFLAGS = [
         # "/s:c17"
+        # "-E"
         ]   
 
 # env.Library(
@@ -42,3 +44,4 @@ env.Program(
     CPPPATH= HEADERPATH,
     CPPFLAGS=CPPFLAGS
 )
+

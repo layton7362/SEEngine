@@ -38,7 +38,7 @@ public:
 
 {cb};
 
-#endif
+#endif // __{class_name}__h
 ''' 
     pass
 

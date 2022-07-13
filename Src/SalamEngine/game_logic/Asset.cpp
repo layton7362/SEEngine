@@ -1,5 +1,5 @@
 
-#include "SalamEngine/game_logic/Asset.h"
+#include <SalamEngine/common.h>
 
 Asset::Asset()
 {
@@ -9,7 +9,7 @@ Asset::~Asset()
 {
 }
 
-SDL_Texture *Asset::load_texture(SDL_Renderer &renderer, string &texture_path)
+SDL_Texture *Asset::load_texture(SDL_Renderer &renderer, string &&texture_path)
 {
     auto it = tex_manager.find(texture_path.c_str());
     if (it != tex_manager.end())
