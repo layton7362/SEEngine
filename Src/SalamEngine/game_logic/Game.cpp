@@ -3,7 +3,8 @@
 #include <SalamEngine/game_object/Sprite2D.h>
 
 Game game;
-InputG Input;
+InputG input;
+Asset asset;
 
 class Sprite2D;
 

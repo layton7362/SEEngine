@@ -1,7 +1,6 @@
 
 #include <SalamEngine/game_object/Sprite2D.h>
 
-
 Sprite2D::Sprite2D(vec2 position) : GameObject2D(position)
 {
 }
@@ -35,6 +34,13 @@ void Sprite2D::set_sprite(SDL_Texture *texture)
 {
     this->texture = texture;
     SDL_QueryTexture(texture, NULL, NULL, &sbox.w, &sbox.h);
+}
+
+void Sprite2D::on_create()
+{
+}
+void Sprite2D::on_destroy()
+{
 }
 
 void Sprite2D::on_update()

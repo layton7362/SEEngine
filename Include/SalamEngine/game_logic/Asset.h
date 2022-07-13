@@ -25,6 +25,6 @@ public:
     // Members
 
     map<const char*, SDL_Texture*> tex_manager;
-}asset;
+};
 
 #endif

@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <SalamEngine/common.h>
 
-Game game;
-
 int main()
 {
     int result = game.start();
